@@ -16,7 +16,7 @@ abstract class FilterContract
 
     protected Request $request;
 
-    protected string $cast;
+    protected $cast;
 
     protected static $queryName;
 

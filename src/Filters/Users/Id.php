@@ -29,5 +29,5 @@ class Id extends FilterContract
     }
 
     // ToDo: This is mandatory. should be fixed
-    protected string $cast = 'integer';
+//    protected $cast = 'integer';
 }
