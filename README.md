@@ -1,11 +1,15 @@
-# Very short description of the package
+![](https://github.com/mjedari/larafilter/art/banner.png)
+
+# Laravel Query String Filter
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mjedari/larafilter.svg?style=flat-square)](https://packagist.org/packages/mjedari/larafilter)
-[![Build Status](https://img.shields.io/travis/mjedari/larafilter/master.svg?style=flat-square)](https://travis-ci.org/mjedari/larafilter)
+[![Build Status](https://scrutinizer-ci.com/g/mjedari/larafilter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mjedari/larafilter/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mjedari/larafilter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mjedari/larafilter/?branch=master)
 [![Quality Score](https://img.shields.io/scrutinizer/g/mjedari/larafilter.svg?style=flat-square)](https://scrutinizer-ci.com/g/mjedari/larafilter)
 ![PHP Tests](https://github.com/mjedari/larafilter/workflows/PHP%20Tests/badge.svg)
 ![PHP 8 Tests](https://github.com/mjedari/larafilter/workflows/PHP%208%20Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/mjedari/larafilter.svg?style=flat-square)](https://packagist.org/packages/mjedari/larafilter)
+
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
