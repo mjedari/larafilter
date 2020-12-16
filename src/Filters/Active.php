@@ -28,6 +28,7 @@ class Active extends FilterContract
             Rule::in(['true', 'false']),
         ];
     }
+
     // ToDo: This is mandatory. should be fixed
     // string is only in php7.4
     protected string $cast = 'boolean';
