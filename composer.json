@@ -1,0 +1,55 @@
+{
+    "name": "mjedari/larafilter",
+    "description": "Simple laravel query string based filter package",
+    "keywords": [
+        "mjedari",
+        "larafilter",
+        "laravel-filter",
+        "query-filter"
+    ],
+    "homepage": "https://github.com/mjedari/larafilter",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mahdi Jedari",
+            "email": "i.jedari@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "require-dev": {
+        "laravel/legacy-factories": "^1.1",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mjedari\\Larafilter\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mjedari\\Larafilter\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mjedari\\Larafilter\\LarafilterServiceProvider"
+            ],
+            "aliases": {
+                "Larafilter": "Mjedari\\Larafilter\\LarafilterFacade"
+            }
+        }
+    }
+}

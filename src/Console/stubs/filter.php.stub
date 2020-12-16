@@ -1,0 +1,30 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Builder;
+use Mjedari\Larafilter\Filters\FilterContract;
+
+class DummyClass extends FilterContract
+{
+   public function apply(Builder $builder)
+   {
+       // TODO: Implement apply() method.
+   }
+
+   public function options()
+   {
+       // TODO: Implement options() method.
+   }
+
+   /*
+   * Set rules on the query string
+   */
+   public function rules()
+   {
+       return [
+           //
+       ];
+   }
+
+}
