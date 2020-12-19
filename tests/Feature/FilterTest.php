@@ -19,10 +19,10 @@ class FilterTest extends TestCase
         $hasQueryName = collect($reflectionClass->getProperties())->filter(function ($property) {
             return $property->name === 'queryName' and $property->class === $this->class;
         });
-        if (!$hasQueryName->isEmpty()){
+        if (! $hasQueryName->isEmpty()) {
             $this->filterName = $reflectionClass->getStaticPropertyValue('queryName');
         } else {
-            $this->filterName = strtolower(collect(explode('\\',$this->class))->last());
+            $this->filterName = strtolower(collect(explode('\\', $this->class))->last());
         }
     }
 
