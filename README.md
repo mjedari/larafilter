@@ -13,13 +13,13 @@
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
-## Quick start
-#### Create a filter
+# Quick start
+### Create a filter
 ```bash
 php artisan make:filter country
 ```
 
-#### Implement your filter logic
+### Implement your filter logic
 In the filter class which is created, implement your login in the ``apply()`` method.
 In order to get query value just use ``$this->value``. We retrieved it for you from your request.
 ```php
@@ -33,7 +33,7 @@ public function apply(Builder $builder)
 ...
 ```
 
-#### Register filter class for model
+### Register filter class for model
 Before registering you should use ``Filterable`` trait in your model.
 ```php
 use Filterable;
@@ -46,7 +46,7 @@ protected static $filters = [
 ];
 
 ```
-#### Use it!
+### Use it!
 
 ```php
 // All registered filtered are available through this method:
@@ -59,8 +59,8 @@ User::filter()->get();
 User::filterThrough([Country::class])->get();
 
 ```
-
-## Installation
+***
+# Installation
 
 You can install the package via composer:
 
@@ -71,9 +71,9 @@ Then you can publish config file:
 ```bash
 php artisan vendor:publish --provider "Mjedari\Larafilter\LarafilterServiceProvider"
 ```
-## Usage
+# Usage
 
-### Initiation
+## Initiation
 Its simple.First create a filter by this command:
 ```bash
 php artisan make:filter filter-name"
@@ -119,7 +119,7 @@ public function apply(Builder $builder)
 ```
 The important thing is that you have access query string value by ``$this->value`` in your filter class.
 
-### Using
+## Using
 
 For Which model you want to filter you should add ``Filterable`` trait in it.
 
