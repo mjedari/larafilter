@@ -13,6 +13,53 @@
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
+## Quick start
+#### Create a filter
+```bash
+php artisan make:filter country
+```
+
+#### Implement your filter logic
+In the filter class which is created, implement your login in the ``apply()`` method.
+In order to get query value just use ``$this->value``. We retrieved it for you from your request.
+```php
+...
+
+public function apply(Builder $builder)
+{
+    return $builder->where('country', $this->value);
+}
+
+...
+```
+
+#### Register filter class for model
+Before registering you should use ``Filterable`` trait in your model.
+```php
+use Filterable;
+...
+
+...
+
+protected static $filters = [
+    Country::class,
+];
+
+```
+#### Use it!
+
+```php
+// All registered filtered are available through this method:
+
+User::filter()->get();
+
+
+// Only Specific registered filter is available and executable:
+
+User::filterThrough([Country::class])->get();
+
+```
+
 ## Installation
 
 You can install the package via composer:
@@ -111,10 +158,62 @@ Every thing is ready. just use it in your queries:
 User::filter()->get();
 ```
 
+
 if you want to specify some filter you can pass them thought this method:
 ```php
 User::filterThrough([City::class])->get();
 ```
+
+It's good to mention that this package works with query string. Ex:
+```php
+Route::get('/?country=germany', function() {
+    return User->filter()->get();
+});
+```
+So you should pass params through the url. The default query name is filter class name. Of course you can change the filters query name by:
+ 
+```php
+
+class CountryFilter extends FilterContract
+{
+    public static $queryName = 'country';
+    .
+    .
+    .
+
+```
+
+Also, you can set rules on your query string parameters:
+```php
+
+class Active extends FilterContract
+{
+ 
+    public function rules()
+    {
+        return [
+            'required',
+            Rule::in(['true', 'false']),
+        ];
+    }
+```
+More than that sometimes we would like cast query string value. So:
+
+```php
+
+class Active extends FilterContract
+{
+    
+    protected $cast = 'boolean';
+
+    public function rules()
+    {
+        return [
+            //
+        ];
+    }
+```
+
 ### Testing
 
 ``` bash
