@@ -25,6 +25,7 @@ trait Filterable
     protected function handel($query, $modelFilters)
     {
         $queryFilters = request()->query();
+
         return collect($queryFilters)->map(function ($filter, $value) use ($query) {
             // Reject if model doesn't has the filter
             $normalizedFilters = LaraFilter::normalizeFilters(self::$filters);
@@ -36,5 +37,4 @@ trait Filterable
             return (new $class())->apply($query);
         });
     }
-
 }

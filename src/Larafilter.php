@@ -2,14 +2,12 @@
 
 namespace Mjedari\Larafilter;
 
-
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use ReflectionClass;
 
 class Larafilter
 {
-
     /**
      * Check if larafilter config file has been published and set.
      * @return bool
@@ -44,6 +42,5 @@ class Larafilter
 
             return $result;
         });
-
     }
 }
