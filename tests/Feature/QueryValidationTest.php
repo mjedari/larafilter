@@ -14,9 +14,16 @@ class QueryValidationTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
         $reflectionClass = new ReflectionClass($this->class);
-        $this->filterName = $reflectionClass->getStaticPropertyValue('queryName') ??
-            strtolower(collect(explode('\\',$this->class))->last());
+        $hasQueryName = collect($reflectionClass->getProperties())->filter(function ($property) {
+            return $property->name === 'queryName' and $property->class === $this->class;
+        });
+        if (!$hasQueryName->isEmpty()){
+            $this->filterName = $reflectionClass->getStaticPropertyValue('queryName');
+        } else {
+            $this->filterName = strtolower(collect(explode('\\',$this->class))->last());
+        }
     }
 
     /** @test */
