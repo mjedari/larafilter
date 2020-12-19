@@ -20,13 +20,101 @@ You can install the package via composer:
 ```bash
 composer require mjedari/larafilter
 ```
-
+Then you can publish config file:
+```bash
+php artisan vendor:publish --provider "Mjedari\Larafilter\LarafilterServiceProvider"
+```
 ## Usage
 
-``` php
-// Usage description here
+### Initiation
+Its simple.First create a filter by this command:
+```bash
+php artisan make:filter filter-name"
+```
+Command will create a class under the default directory ``App\Filters`` : 
+```php
+namespace App\Filters;
+
+use Illuminate\Database\Eloquent\Builder;
+use Mjedari\Larafilter\Filters\FilterContract;
+
+class Active extends FilterContract
+{
+
+   public function apply(Builder $builder)
+   {
+       // TODO: Implement apply() method.
+   }
+
+   public function options()
+   {
+       // TODO: Implement options() method.
+   }
+
+   /*
+   * Set rules on the query string
+   */
+   public function rules()
+   {
+       return [
+           //
+       ];
+   }
+
+}
+```
+Your filter logic would be implemented in the ``apply()`` method:
+```php
+public function apply(Builder $builder)
+{
+    return $builder->where('avtive', $this->value);
+}
+```
+The important thing is that you have access query string value by ``$this->value`` in your filter class.
+
+### Using
+
+For Which model you want to filter you should add ``Filterable`` trait in it.
+
+```php
+class User extends Authenticatable
+{
+    use Filterable;
+    .
+    .
+    .
+    
+```
+Then add related filters that you created. It should be static property:
+
+```php
+use App\Filters\Active;
+use App\Filters\City;
+
+class User extends Authenticatable
+{
+    use Filterable;
+ 
+    protected static $filters = [
+        Active::class,
+        City::class
+    ];
+
+    .
+    .
+    .
+
 ```
 
+Every thing is ready. just use it in your queries:
+```php
+User::filter()->get();
+```
+
+if you want to specify some filter you can pass them thought this method:
+```php
+User::filterThrough([City::class])->get();
+```
 ### Testing
 
 ``` bash
