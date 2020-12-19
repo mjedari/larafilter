@@ -4,7 +4,6 @@ namespace Mjedari\Larafilter\Exceptions;
 
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class InvalidQueryString extends Exception
 {

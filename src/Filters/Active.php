@@ -7,9 +7,9 @@ use Illuminate\Validation\Rule;
 
 class Active extends FilterContract
 {
-    public $active;
+//    public static $queryName = 'activea';
 
-    public static $queryName = 'activea';
+    protected $cast = 'boolean';
 
     public function apply(Builder $query): Builder
     {
@@ -28,8 +28,4 @@ class Active extends FilterContract
             Rule::in(['true', 'false']),
         ];
     }
-
-    // ToDo: This is mandatory. should be fixed
-    // string is only in php7.4
-//    protected $cast = 'boolean';
 }

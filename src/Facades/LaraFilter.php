@@ -2,10 +2,12 @@
 
 namespace Mjedari\Larafilter\Facades;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static configNotPublished()
+ * @method static collection normalizeFilters(array $filters)
  */
 class LaraFilter extends Facade
 {

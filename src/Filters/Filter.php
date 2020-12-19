@@ -15,4 +15,11 @@ class Filter implements FilterInterface
     {
         // TODO: Implement options() method.
     }
+
+    public function rules()
+    {
+        return [
+            //
+        ];
+    }
 }

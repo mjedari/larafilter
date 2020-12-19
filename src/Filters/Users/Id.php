@@ -7,9 +7,9 @@ use Mjedari\Larafilter\Filters\FilterContract;
 
 class Id extends FilterContract
 {
-    public $id;
-
     public static $queryName = 'ida';
+
+    protected $cast = 'integer';
 
     public function apply(Builder $query): Builder
     {
@@ -27,7 +27,4 @@ class Id extends FilterContract
             'required', 'numeric',
         ];
     }
-
-    // ToDo: This is mandatory. should be fixed
-//    protected $cast = 'integer';
 }

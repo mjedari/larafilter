@@ -2,10 +2,23 @@
 
 namespace Mjedari\Larafilter\Tests\Feature;
 
+use Mjedari\Larafilter\Filters\Active;
 use Mjedari\Larafilter\Tests\TestCase;
+use ReflectionClass;
 
 class FilterTest extends TestCase
 {
+    protected string $class = Active::class;
+    protected string $filterName;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $reflectionClass = new ReflectionClass($this->class);
+        $this->filterName = $reflectionClass->getStaticPropertyValue('queryName') ??
+            strtolower(collect(explode('\\',$this->class))->last());
+    }
+
     /** @test */
     public function test_filter_route_works()
     {
@@ -23,28 +36,28 @@ class FilterTest extends TestCase
     /** @test */
     public function use_filter_to_get_active_users()
     {
-        $response = $this->get('/test-route-filter?activea=true');
+        $response = $this->get("/test-route-filter?$this->filterName=true");
         $this->assertEquals($response->getContent(), 40);
     }
 
     /** @test */
     public function use_filter_to_get_inactive_users()
     {
-        $response = $this->get('/test-route-filter?activea=false');
+        $response = $this->get("/test-route-filter?$this->filterName=false");
         $this->assertEquals($response->getContent(), 60);
     }
 
     /** @test */
     public function use_filter_through_to_get_active_users()
     {
-        $response = $this->get('/test-route-filter-through?activea=true');
+        $response = $this->get("/test-route-filter-through?$this->filterName=true");
         $this->assertEquals($response->getContent(), 40);
     }
 
     /** @test */
     public function use_filter_through_to_get_inactive_users()
     {
-        $response = $this->get('/test-route-filter-through?activea=false');
+        $response = $this->get("/test-route-filter-through?$this->filterName=false");
         $this->assertEquals($response->getContent(), 60);
     }
 }

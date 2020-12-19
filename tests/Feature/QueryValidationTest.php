@@ -15,7 +15,8 @@ class QueryValidationTest extends TestCase
     {
         parent::setUp();
         $reflectionClass = new ReflectionClass($this->class);
-        $this->filterName = $reflectionClass->getStaticPropertyValue('queryName');
+        $this->filterName = $reflectionClass->getStaticPropertyValue('queryName') ??
+            strtolower(collect(explode('\\',$this->class))->last());
     }
 
     /** @test */
