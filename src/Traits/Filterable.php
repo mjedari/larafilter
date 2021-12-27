@@ -32,6 +32,12 @@ trait Filterable
             if (! $normalizedFilters->get($value)) {
                 return false;
             }
+
+            // Reject if query string is empty
+            if (! $filter) {
+                return;
+            }
+
             $class = $normalizedFilters->get($value);
 
             return (new $class())->apply($query);
